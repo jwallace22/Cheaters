@@ -12,6 +12,7 @@
 #include <iostream>
 #include <fstream>
 #include <queue>
+#include <algorithm>
 using namespace std;
 class chunk {
 private:
@@ -20,7 +21,9 @@ private:
 public:
     chunk();
     chunk(int _size, vector<string> _words);
-    void hashMap();
     string filter(string unfilteredWord);
+    string getString() const{
+        return myWords;
+    }
 };
 #endif //PROGRAM_8_CHUNK_H
