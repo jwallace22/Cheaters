@@ -25,7 +25,35 @@ int getdir (string dir, vector<string> &files)
     closedir(dp);
     return 0;
 }
+int printChunks (vector<string> _files, int _chunkSize){
+    ofstream outputFile;
+    outputFile.open("outputTest.txt");
+    for(unsigned int i = 2; i < _files.size();i++){//files.size();i++){
 
+        cout << _files[i] << endl;
+        outputFile << _files[i] << endl;
+        ifstream inFile;
+        inFile.open(_files[i]);//files[i]);
+        vector <string> words;
+
+        while(inFile){
+            string temp;
+            inFile >> temp;
+            words.push_back(temp);
+            if(words.size()==_chunkSize){
+                for(int i = 0; i < words.size();i++){
+                    outputFile << words[i];
+                }
+                outputFile << endl;
+                words.erase(words.begin());
+            }
+        }
+        inFile.close();
+        outputFile << endl;
+    }
+    outputFile.close();
+    return 0;
+}
 int main()
 {
     int chunkSize = 6;
@@ -36,24 +64,8 @@ int main()
     for (unsigned int i = 0;i < files.size();i++) {
         cout << i << files[i] << endl;
     }
-    for(unsigned int i = 2; i < 3;i++){//files.size();i++){
-        cout << files[i] << endl;
-        ifstream inFile;
-        inFile.open("C:\\Users\\Jeffrey\\Dropbox\\College\\EE 312\\Program 8\\cmake-build-debug\\sm_doc_set\\abf0704.txt");//files[i]);
-        vector <string> words;
-        while(inFile){
-            string temp;
-            inFile >> temp;
-            words.push_back(temp);
-            if(words.size()==6){
-                for(int i = 0; i < words.size();i++){
-                    cout << words[i];
-                }
-                cout << endl;
-                words.erase(words.begin());
-            }
-        }
-        inFile.close();
-    }
+    cout << endl;
+
+    printChunks(files, chunkSize);
     return 0;
 }
