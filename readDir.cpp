@@ -6,6 +6,8 @@
 #include <iostream>
 #include <fstream>
 #include <queue>
+#include "chunk.h"
+#include "hashTable.h"
 
 using namespace std;
 
@@ -28,19 +30,21 @@ int getdir (string dir, vector<string> &files)
 int printChunks (vector<string> _files, int _chunkSize){
     ofstream outputFile;
     outputFile.open("outputTest.txt");
-    for(unsigned int i = 2; i < _files.size();i++){//files.size();i++){
+    hashTable table;
+    for(unsigned int i = 2; i < 4;i++){//_files.size();i++){
 
         cout << _files[i] << endl;
         outputFile << _files[i] << endl;
         ifstream inFile;
-        inFile.open(_files[i]);//files[i]);
+        inFile.open("C:\\Users\\Jeffrey\\Dropbox\\College\\EE 312\\Program 8\\cmake-build-debug\\"+_files[i]);
         vector <string> words;
-
         while(inFile){
             string temp;
             inFile >> temp;
             words.push_back(temp);
             if(words.size()==_chunkSize){
+                chunk temp = chunk(_chunkSize,words);
+                table.hash(temp.getString(),_files[i]);
                 for(int i = 0; i < words.size();i++){
                     outputFile << words[i];
                 }
@@ -51,11 +55,13 @@ int printChunks (vector<string> _files, int _chunkSize){
         inFile.close();
         outputFile << endl;
     }
+    table.showTable();
     outputFile.close();
     return 0;
 }
 int main()
 {
+
     int chunkSize = 6;
     string dir = string("sm_doc_set");
     vector<string> files = vector<string>();

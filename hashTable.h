@@ -19,6 +19,6 @@ public:
     hashTable(int _size);
     void hash(string word,string fileName);
     vector<string> compare(string fileName);
-
+    void showTable() const;
 };
 #endif //PROGRAM_8_HASHTABLE_H
