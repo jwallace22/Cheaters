@@ -17,7 +17,6 @@ chunk::chunk(int _size, vector<string> _words) {
     for(int i = 1; i < _words.size(); i++){
         myWords += filter(_words[i]);
     }
-    cout << myWords << endl;
 }
 string chunk::filter(string unfilteredWord) {
     string str = unfilteredWord;
@@ -27,6 +26,15 @@ string chunk::filter(string unfilteredWord) {
     str.erase(std::remove(str.begin(), str.end(), '-'), str.end());
     str.erase(std::remove(str.begin(), str.end(), ','), str.end());
     str.erase(std::remove(str.begin(), str.end(), '\''), str.end());
+    str.erase(std::remove(str.begin(), str.end(), ':'), str.end());
+    str.erase(std::remove(str.begin(), str.end(), ';'), str.end());
+    str.erase(std::remove(str.begin(), str.end(), '\"'), str.end());
+    str.erase(std::remove(str.begin(), str.end(), '('), str.end());
+    str.erase(std::remove(str.begin(), str.end(), ')'), str.end());
+    str.erase(std::remove(str.begin(), str.end(), '<'), str.end());
+    str.erase(std::remove(str.begin(), str.end(), '>'), str.end());
+    str.erase(std::remove(str.begin(), str.end(), '['), str.end());
+    str.erase(std::remove(str.begin(), str.end(), ']'), str.end());
     for(int i = 0; i < str.size(); i++){
         str[i] = toupper(str[i]);
     }

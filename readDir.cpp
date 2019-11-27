@@ -28,13 +28,8 @@ int getdir (string dir, vector<string> &files)
     return 0;
 }
 int printChunks (vector<string> _files, int _chunkSize){
-    ofstream outputFile;
-    outputFile.open("outputTest.txt");
     hashTable table;
-    for(unsigned int i = 2; i < 4;i++){//_files.size();i++){
-
-        cout << _files[i] << endl;
-        outputFile << _files[i] << endl;
+    for(unsigned int i = 2; i < _files.size();i++){
         ifstream inFile;
         inFile.open("C:\\Users\\Jeffrey\\Dropbox\\College\\EE 312\\Program 8\\cmake-build-debug\\"+_files[i]);
         vector <string> words;
@@ -45,18 +40,12 @@ int printChunks (vector<string> _files, int _chunkSize){
             if(words.size()==_chunkSize){
                 chunk temp = chunk(_chunkSize,words);
                 table.hash(temp.getString(),_files[i]);
-                for(int i = 0; i < words.size();i++){
-                    outputFile << words[i];
-                }
-                outputFile << endl;
                 words.erase(words.begin());
             }
         }
         inFile.close();
-        outputFile << endl;
     }
     table.showTable();
-    outputFile.close();
     return 0;
 }
 int main()

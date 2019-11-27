@@ -8,17 +8,18 @@
 using namespace std;
 struct ListNode{
     string fileName;
+    string value;
     ListNode * next;
 };
 class hashTable {
 private:
-    int tableSize;
-    ListNode * myTable[5000];
+    static const int tableSize = 499979;
+    ListNode * myTable[tableSize];
 public:
     hashTable();
-    hashTable(int _size);
     void hash(string word,string fileName);
     vector<string> compare(string fileName);
     void showTable() const;
+    ~hashTable();
 };
 #endif //PROGRAM_8_HASHTABLE_H
