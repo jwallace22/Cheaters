@@ -27,11 +27,11 @@ int getdir (string dir, vector<string> &files)
     closedir(dp);
     return 0;
 }
-int printChunks (vector<string> _files, int _chunkSize){
+int scanFiles (vector<string> _files, int _chunkSize, int plagiarismThreshold){
     hashTable table;
     for(unsigned int i = 2; i < _files.size();i++){
         ifstream inFile;
-        inFile.open("C:\\Users\\Jeffrey\\Dropbox\\College\\EE 312\\Program 8\\cmake-build-debug\\"+_files[i]);
+        inFile.open(("//home//ecelrc//students//jwallace1//EE312//Cheaters//sm_doc_set//"+_files[i]).c_str(),inFile.in);
         vector <string> words;
         while(inFile){
             string temp;
@@ -46,22 +46,19 @@ int printChunks (vector<string> _files, int _chunkSize){
         inFile.close();
     }
     table.showTable();
-    table.checkCollisions(_files);
+    table.checkCollisions(_files, plagiarismThreshold);
     return 0;
 }
-int main()
+int main(int argc, char ** argv)
 {
-
-    int chunkSize = 6;
-    string dir = string("sm_doc_set");
+    int plagiarismThreshold = stoi(argv[3]);
+    int chunkSize = stoi(argv[2]);
+    string dir = argv[1];//string("sm_doc_set");
     vector<string> files = vector<string>();
     getdir(dir,files);
-
     for (unsigned int i = 0;i < files.size();i++) {
         cout << i << files[i] << endl;
     }
     cout << endl;
-
-    printChunks(files, chunkSize);
-    return 0;
+    return scanFiles(files, chunkSize, plagiarismThreshold);
 }

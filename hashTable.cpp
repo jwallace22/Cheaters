@@ -22,7 +22,7 @@ void hashTable::hash(string word,string _fileName) {
     unsigned int key = 0;
     // calculate the key based on the string using the method learned in class
     for(int i = 0; (i < word.size()); i++){
-        key += (word.at(word.size()-i-1)-'a'+1)*exp(11,i);
+        key += (word.at(word.size()-i-1)-'a'+1)*exp(31,i);
     }
     key = key%tableSize;
     bool match = false;
@@ -54,7 +54,6 @@ void hashTable::showTable() const {
             for (ListNode *ptr = myTable[i]; ptr != NULL; ptr = ptr->next) {
                 if(ptr->value != previous){
                     numErrors++;
-                    break;
                 }
                 outputFile << ptr->value << " ";
             }
@@ -73,14 +72,8 @@ int getFileIndex(vector <string> _files, string _fileName){
     }
     return -1;
 }
-void hashTable::checkCollisions(vector<string> _files) { //files is the vector of fileNames from milestone I
-    vector <vector<int>> collisionTable(_files.size(),vector<int> (_files.size(),0));
-    /*for(int i = 0; i < _files.size(); i++){
-        for(int j = i; j < _files.size(); j++){
-            collisionTable[i][j] = 0;
-        }
-    }
-     */
+void hashTable::checkCollisions(vector<string> _files, int plagiarismThreshold) { //files is the vector of fileNames from milestone I
+    vector < vector <int> > collisionTable(_files.size(),vector<int> (_files.size(),0));//initialize the vector with 0's for all values
     //populate table with number of collisions stored based on indexes into _files
     for(int i = 0; i < tableSize;i++){
         if(myTable[i]!=NULL && myTable[i]->next != NULL){
@@ -95,7 +88,10 @@ void hashTable::checkCollisions(vector<string> _files) { //files is the vector o
     }
     for(int i = 2; i < _files.size(); i++){
         for(int j = i; j < _files.size(); j++){
-            cout << _files.at(i) << ":" << _files.at(j) << " " << collisionTable[i][j]<< endl;
+            if(collisionTable[i][j]>plagiarismThreshold){
+                cout << _files.at(i) << ":" << _files.at(j) << " " << collisionTable[i][j]<< endl;
+
+            }
         }
     }
 }

@@ -13,14 +13,13 @@ struct ListNode{
 };
 class hashTable {
 private:
-    static const int tableSize = 499979;
+    static const unsigned int tableSize = 499979;
     ListNode * myTable[tableSize];
 public:
     hashTable();
     void hash(string word,string fileName);
-    vector<string> compare(string fileName);
     void showTable() const;
-    void checkCollisions(vector <string> _files);
+    void checkCollisions(vector <string> _files, int plagiarismThreshold);
     ~hashTable();
 };
 #endif //PROGRAM_8_HASHTABLE_H
