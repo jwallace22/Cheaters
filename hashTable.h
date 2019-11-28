@@ -20,6 +20,7 @@ public:
     void hash(string word,string fileName);
     vector<string> compare(string fileName);
     void showTable() const;
+    void checkCollisions(vector <string> _files);
     ~hashTable();
 };
 #endif //PROGRAM_8_HASHTABLE_H

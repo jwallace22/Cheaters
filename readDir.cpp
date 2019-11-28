@@ -46,6 +46,7 @@ int printChunks (vector<string> _files, int _chunkSize){
         inFile.close();
     }
     table.showTable();
+    table.checkCollisions(_files);
     return 0;
 }
 int main()
