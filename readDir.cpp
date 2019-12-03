@@ -27,11 +27,11 @@ int getdir (string dir, vector<string> &files)
     closedir(dp);
     return 0;
 }
-int scanFiles (vector<string> _files, int _chunkSize, int plagiarismThreshold){
+int scanFiles (vector<string> _files, int _chunkSize, int plagiarismThreshold, string dir){
     hashTable table;
     for(unsigned int i = 2; i < _files.size();i++){
         ifstream inFile;
-        inFile.open(("//home//ecelrc//students//jwallace1//EE312//Cheaters//sm_doc_set//"+_files[i]).c_str(),inFile.in);
+        inFile.open((dir+"/"+_files[i]).c_str(),inFile.in);
         vector <string> words;
         while(inFile){
             string temp;
@@ -53,12 +53,12 @@ int main(int argc, char ** argv)
 {
     int plagiarismThreshold = stoi(argv[3]);
     int chunkSize = stoi(argv[2]);
-    string dir = argv[1];//string("sm_doc_set");
+    string dir = argv[1];
     vector<string> files = vector<string>();
     getdir(dir,files);
     for (unsigned int i = 0;i < files.size();i++) {
         cout << i << files[i] << endl;
     }
     cout << endl;
-    return scanFiles(files, chunkSize, plagiarismThreshold);
+    return scanFiles(files, chunkSize, plagiarismThreshold,dir);
 }

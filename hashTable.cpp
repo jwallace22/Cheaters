@@ -86,13 +86,46 @@ void hashTable::checkCollisions(vector<string> _files, int plagiarismThreshold) 
             }
         }
     }
+    cheaters * head = NULL;
     for(int i = 2; i < _files.size(); i++){
         for(int j = i; j < _files.size(); j++){
             if(collisionTable[i][j]>plagiarismThreshold){
-                cout << _files.at(i) << ":" << _files.at(j) << " " << collisionTable[i][j]<< endl;
+                cheaters * temp = new cheaters;
+                temp->file1 = _files.at(i);
+                temp->file2 = _files.at(j);
+                temp->similarities = collisionTable[i][j];
+                if(head == NULL){
+                    head = temp;
+                    temp->next = NULL;
+                }
+                else if(head->similarities < temp->similarities){
+                    temp->next = head;
+                    head = temp;
+                }
+                else{
+                    bool found = false;
+                    for(cheaters * ptr = head; ptr != NULL && !found; ptr = ptr->next){
+                        if(ptr->next == NULL){
+                            ptr->next = temp;
+                            temp ->next = NULL;
+                            found = true;
+                        }
+                        else if((ptr->next)->similarities < temp->similarities){
+                            found = true;
+                            temp->next = ptr->next;
+                            ptr->next = temp;
+                        }
 
+                    }
+                }
             }
         }
+    }
+    for(cheaters * ptr = head; ptr != NULL;){
+        cheaters * temp = ptr;
+        ptr = ptr->next;
+        cout << temp->file1 << ":" << temp->file2 << " " << temp->similarities << endl;
+        delete temp;
     }
 }
 hashTable::~hashTable() {

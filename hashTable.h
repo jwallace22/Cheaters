@@ -11,9 +11,15 @@ struct ListNode{
     string value;
     ListNode * next;
 };
+struct cheaters{
+    string file1;
+    string file2;
+    int similarities;
+    cheaters * next;
+};
 class hashTable {
 private:
-    static const unsigned int tableSize = 499979;
+    static const unsigned int tableSize = 1500000;//499979;
     ListNode * myTable[tableSize];
 public:
     hashTable();
