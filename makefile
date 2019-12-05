@@ -1,9 +1,9 @@
 Cheaters: readDir.o hashTable.o chunk.o
-	g++ -o Cheaters readDir.o hashTable.o chunk.o
-readDir.o: readDir.cpp chunk.h hashTable.h
-	g++ -std=c++0x readDir.cpp
+	g++ -std=c++0x -o Cheaters readDir.o hashTable.o chunk.o
+readDir.o: readDir.cpp hashTable.h chunk.h
+	g++ -std=c++0x -c readDir.cpp
 hashTable.o: hashTable.cpp hashTable.h chunk.h
-	g++ -std=c++0x hashTable.cpp
+	g++ -std=c++0x -c hashTable.cpp
 chunk.o: chunk.cpp chunk.h
-	g++ -std=c++0x chunk.cpp
+	g++ -std=c++0x -c chunk.cpp
 
