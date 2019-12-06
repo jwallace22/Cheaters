@@ -1,5 +1,5 @@
 //
-// Created by Jeffrey on 11/25/2019.
+// Created by Jeffrey and Darren on 11/25/2019.
 //
 #include "hashTable.h"
 #include "math.h"
@@ -62,7 +62,7 @@ void hashTable::showTable() const {
     }
     outputFile.close();
     //this is a debugging statement used to find the number of times a key has multiple (unidentical) chunks that result in this key.
-    cout << "Number of Collisions Found: " << numErrors << " Out of "<< numKeys << " keys with multiple values" << endl;
+    //cout << "Number of Collisions Found: " << numErrors << " Out of "<< numKeys << " keys with multiple values" << endl;
 }
 int getFileIndex(vector <string> _files, string _fileName){
     for(int i = 0; i < _files.size(); i++){
@@ -124,7 +124,7 @@ void hashTable::checkCollisions(vector<string> _files, int plagiarismThreshold) 
     for(cheaters * ptr = head; ptr != NULL;){
         cheaters * temp = ptr;
         ptr = ptr->next;
-        cout << temp->file1 << ":" << temp->file2 << " " << temp->similarities << endl;
+        cout << temp->similarities << ": " << temp->file1 << ", " << temp->file2   << endl;
         delete temp;
     }
 }
