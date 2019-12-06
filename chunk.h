@@ -21,6 +21,13 @@ private:
 public:
     chunk();
     chunk(int _size, vector<string> _words);
+    
+    /*
+    *   Precondition: a word of length n has been read in 
+    *   Input: n length word chunk
+    *   Output: word chunk filtered out 
+    *   Postcondition: word is returned in uppercase without spaces or any other special characters besides the alphabet
+    */
     string filter(string unfilteredWord);
     //getString or toString are common methods to include in a class as to return a string representation of said class.
     //in this case the main part of the chunk is the string which makes this function quite trivial
