@@ -8,7 +8,6 @@
 using namespace std;
 struct ListNode{
     string fileName;
-    //string value;
     ListNode * next;
 };
 struct cheaters{
@@ -19,12 +18,11 @@ struct cheaters{
 };
 class hashTable {
 private:
-    static const unsigned int tableSize = 1500000;//499979;
+    static const unsigned int tableSize = 499979;
     ListNode * myTable[tableSize];
 public:
     hashTable();
     void hash(string word,string fileName);
-    void showTable() const;
     void checkCollisions(vector <string> _files, int plagiarismThreshold);
     ~hashTable();
 };

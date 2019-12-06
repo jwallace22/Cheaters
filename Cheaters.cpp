@@ -45,7 +45,6 @@ int scanFiles (vector<string> _files, int _chunkSize, int plagiarismThreshold, s
         }
         inFile.close();
     }
-    table.showTable();
     table.checkCollisions(_files, plagiarismThreshold);
     return 0;
 }
@@ -56,9 +55,6 @@ int main(int argc, char ** argv)
     string dir = argv[1];
     vector<string> files = vector<string>();
     getdir(dir,files);
-    for (unsigned int i = 0;i < files.size();i++) {
-        cout << i << files[i] << endl;
-    }
     cout << endl;
     return scanFiles(files, chunkSize, plagiarismThreshold,dir);
 }
