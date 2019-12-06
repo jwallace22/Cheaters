@@ -11,7 +11,7 @@
 
 using namespace std;
 
-/*function... might want it in some class?*/
+//gets the all the files names in the directory and pushs them onto a vecto
 int getdir (string dir, vector<string> &files)
 {
     DIR *dp;
@@ -27,6 +27,12 @@ int getdir (string dir, vector<string> &files)
     closedir(dp);
     return 0;
 }
+/*
+*   Precondition: directory has been read in
+*   Input: file name, size of chunks, threshold of plagerism, name of directory
+*   Output: 0 if porgram runs correctly
+*   Postcondition: files are scanned in and put into the hashtable 
+*/
 int scanFiles (vector<string> _files, int _chunkSize, int plagiarismThreshold, string dir){
     hashTable table;
     for(unsigned int i = 2; i < _files.size();i++){
@@ -48,6 +54,7 @@ int scanFiles (vector<string> _files, int _chunkSize, int plagiarismThreshold, s
     table.checkCollisions(_files, plagiarismThreshold);
     return 0;
 }
+//main calles get dir and prints the files that plagerised by calling scanFiles
 int main(int argc, char ** argv)
 {
     int plagiarismThreshold = stoi(argv[3]);
