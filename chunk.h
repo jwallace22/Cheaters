@@ -22,6 +22,8 @@ public:
     chunk();
     chunk(int _size, vector<string> _words);
     string filter(string unfilteredWord);
+    //getString or toString are common methods to include in a class as to return a string representation of said class.
+    //in this case the main part of the chunk is the string which makes this function quite trivial
     string getString() const{
         return myWords;
     }
