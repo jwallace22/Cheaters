@@ -8,7 +8,7 @@
 using namespace std;
 struct ListNode{
     string fileName;
-    string value;
+    //string value;
     ListNode * next;
 };
 struct cheaters{
