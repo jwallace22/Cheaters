@@ -1,16 +1,18 @@
 The Cheaters Program By Jeffery Wallace and Darren Nguyen
+EIDs: jtw2992 & ddn544
 12/6/2019
 
 To make project:
 Type in: "make"
 
 To run project:
-Type in: "./Cheaters (filepath to document set) (size of word chunks) (plagerism threshold)"
-Example: "./Cheaters /home/ecelrc/students/ftark10/doc_set 6 200"
+Type in: "./plagiarismCatcher (filepath to document set) (size of word chunks) (plagerism threshold)"
+Example: "./plagiarismCatcher /home/ecelrc/students/ftark10/doc_set 6 200"
 	This will check the document and report if there are more than 200 6 word chunks that are similar between documents
 
 Running with valgrind:
 When running in valgrind, you will need to include "--max-stackframe=24593984" as a flag after "valgrind"
+This is due to the massive amount of dynamic memory allocation being used for the table. 
 
 Structure of the program:
 The program works by first receiving a document from the set and seperating the words into chunk objects of the size specified.
